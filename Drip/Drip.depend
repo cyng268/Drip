@@ -647,16 +647,24 @@
 	<iostream>
 	<sstream>
 
-1744615327 source:/home/kng/Drip/src/main.cpp
+1744684632 source:/home/kng/Drip/src/main.cpp
 	"common.h"
 	"camera.h"
 	"ui.h"
 	"serial.h"
 	"recording.h"
 	"config.h"
+	"background_subtraction.h"
+	"export_dialog.h"
+	"ui_helpers.h"
+	"navigation_bar.h"
 
-1744615133 /home/kng/Drip/src/ui.h
+1744684012 /home/kng/Drip/src/ui.h
 	"common.h"
+	"background_subtraction.h"
+	"export_dialog.h"
+	"ui_helpers.h"
+	"navigation_bar.h"
 
 1743642780 /home/kng/Drip/src/serial.h
 	"common.h"
@@ -693,7 +701,7 @@
 1743642780 source:/home/kng/Drip/src/serialib.cpp
 	"serialib.h"
 
-1744615118 source:/home/kng/Drip/src/ui.cpp
+1744684250 source:/home/kng/Drip/src/ui.cpp
 	"ui.h"
 	"serial.h"
 	"recording.h"
@@ -707,4 +715,34 @@
 	<X11/Xutil.h>
 	<X11/Xatom.h>
 	<cstring>
+
+1744682549 source:/home/kng/Drip/src/background_subtraction.cpp
+	"background_subtraction.h"
+	<fstream>
+	<algorithm>
+
+1744682536 /home/kng/Drip/src/background_subtraction.h
+	"common.h"
+
+1744682587 source:/home/kng/Drip/src/export_dialog.cpp
+	"export_dialog.h"
+	<dirent.h>
+	<sys/stat.h>
+	<fstream>
+
+1744682553 /home/kng/Drip/src/export_dialog.h
+	"common.h"
+
+1744684678 /home/kng/Drip/src/ui_helpers.h
+	"common.h"
+
+1744682726 /home/kng/Drip/src/navigation_bar.h
+	"common.h"
+
+1744682608 source:/home/kng/Drip/src/navigation_bar.cpp
+	"navigation_bar.h"
+	"ui_helpers.h"
+
+1744684248 source:/home/kng/Drip/src/ui_helpers.cpp
+	"ui_helpers.h"
 
