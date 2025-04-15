@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Drip" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Drip" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="/usr/include/opencv4" />
+				</Compiler>
+				<Linker>
+					<Add option="`pkg-config --libs --cflags opencv4` -lX11" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Drip" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="/usr/include/opencv4" />
+		</Compiler>
+		<Linker>
+			<Add option="`pkg-config --libs --cflags opencv4` -lX11" />
+		</Linker>
+		<Unit filename="../src/camera.cpp" />
+		<Unit filename="../src/camera.h" />
+		<Unit filename="../src/common.h" />
+		<Unit filename="../src/config.h" />
+		<Unit filename="../src/main.cpp" />
+		<Unit filename="../src/recording.cpp" />
+		<Unit filename="../src/recording.h" />
+		<Unit filename="../src/serial.cpp" />
+		<Unit filename="../src/serial.h" />
+		<Unit filename="../src/serialib.cpp" />
+		<Unit filename="../src/serialib.h" />
+		<Unit filename="../src/ui.cpp" />
+		<Unit filename="../src/ui.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
