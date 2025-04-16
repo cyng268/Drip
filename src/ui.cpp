@@ -65,7 +65,7 @@ void initializeUI(int windowWidth, int windowHeight) {
 
     // Background subtraction controls area - INCREASED SIZE
     int controlsWidth = 400;       // Increased from maxContourArea
-    int controlsHeight = 150;      // Increased from 100
+    int controlsHeight = 200;      // Increased from 100
     int controlsX = 10;
     int controlsY = topBarHeight + 10;
 
@@ -85,6 +85,30 @@ void mouseCallback(int event, int x, int y, int flags, void* userdata) {
             showBgSubControls = !showBgSubControls;
             updateBgSubControlsTogglePosition(showBgSubControls);
             return;
+        }
+        
+        if (showBgSubControls) {
+            // Check for ICR Mode button click
+            if (icrButtonRect.contains(Point(x, y))) {
+                icrModeEnabled = !icrModeEnabled;
+                sendICRCommand(icrModeEnabled);
+                return;
+            }
+            
+            // Check for IR Correction button click
+            if (irCorrectionButtonRect.contains(Point(x, y))) {
+                irCorrectionEnabled = !irCorrectionEnabled;
+                sendIRCorrectionCommand(irCorrectionEnabled);
+                return;
+            }
+            
+            // Only handle sliders if background subtraction isn't active
+            if (!bgSubtractionActive) {
+                if (handleDualSliderInteraction(x, y, bgSubSliderRect, lowerBound, upperBound, 
+                                              minContourArea, maxContourArea)) {
+                    return;
+                }
+            }
         }
         
         if (!showExportDialog) {
@@ -331,34 +355,45 @@ void mouseCallback(int event, int x, int y, int flags, void* userdata) {
     }
 }
 
-// // Call this function to zoom in
-// void zoomIn() {
-//     if (!serialInitialized) {
-//         serialInitialized = cameraSerial.initializeSerial();
-//         if (!serialInitialized) {
-//             setLogMessage("COM Error");
-//             return;
-//         }
-//     }
+// Modify the initIR function to position controls correctly
+void initIR(int x, int y, int width, int height) {
+    // No need to redefine bgSubControlsRect - just use existing one
     
-//     bool success = cameraSerial.sendZoomCommand(true);
-//     if (!success) {
-//         setLogMessage("Zoom Error");
-//     }
-// }
+    // Position buttons at the TOP of the panel, leaving room for slider below
+    int buttonY = y + 15;  // Move closer to the top
+    int buttonWidth = (width - 30) / 2;  // Half of available width minus padding
+    
+    // Position ICR button on left side
+    icrButtonRect = Rect(x + 10, buttonY, buttonWidth, 30);
+    
+    // IR Correction button (beside ICR Mode button)
+    irCorrectionButtonRect = Rect(x + 20 + buttonWidth, buttonY, buttonWidth, 30);
+    
+    // Don't redefine toggle button - it's already defined in initBgSubControls
+}
 
-// // Call this function to zoom out
-// void zoomOut() {
-//     if (!serialInitialized) {
-//         serialInitialized = cameraSerial.initializeSerial();
-//         if (!serialInitialized) {
-//             setLogMessage("COM Error");
-//             return;
-//         }
-//     }
+// Modify the drawIR function to avoid drawing over contour area controls
+void drawIR(Mat& frame, bool bgActive) {
+    if (!showBgSubControls) {
+        return; // Don't draw anything if controls not shown
+    }
     
-//     bool success = cameraSerial.sendZoomCommand(false);
-//     if (!success) {
-//         setLogMessage("Zoom Error");
-//     }
-// }
+    // Don't redraw the background or toggle button - already done in drawBgSubControls
+    
+    // Draw ICR Mode button
+    Scalar icrButtonColor = icrModeEnabled ? BUTTON_COLOR : Scalar(100, 100, 100);
+    rectangle(frame, icrButtonRect, icrButtonColor, -1);
+    rectangle(frame, icrButtonRect, HIGHLIGHT_COLOR, 1);
+    putText(frame, "ICR Mode: " + string(icrModeEnabled ? "ON" : "OFF"), 
+            Point(icrButtonRect.x + 10, icrButtonRect.y + 20),
+            FONT_HERSHEY_SIMPLEX, 0.5, TEXT_COLOR, 1);
+    
+    // Draw IR Correction button
+    Scalar irCorrectionColor = irCorrectionEnabled ? BUTTON_COLOR : Scalar(100, 100, 100);
+    rectangle(frame, irCorrectionButtonRect, irCorrectionColor, -1);
+    rectangle(frame, irCorrectionButtonRect, HIGHLIGHT_COLOR, 1);
+    putText(frame, "IR Correction: " + string(irCorrectionEnabled ? "ON" : "OFF"), 
+            Point(irCorrectionButtonRect.x + 10, irCorrectionButtonRect.y + 20),
+            FONT_HERSHEY_SIMPLEX, 0.5, TEXT_COLOR, 1);
+}
+

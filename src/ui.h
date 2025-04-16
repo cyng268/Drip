@@ -10,13 +10,11 @@
 // Initialize UI components
 void initializeUI(int windowWidth, int windowHeight);
 
-// Mouse callback function
+// Mouse callback function 
 void mouseCallback(int event, int x, int y, int flags, void* userdata);
 
-// // Call this function to zoom in
-// void zoomIn();
+void initIR(int x, int y, int width, int height);
 
-// // Call this function to zoom out
-// void zoomOut();
+void drawIR(Mat& frame, bool bgActive);
 
 #endif // UI_H

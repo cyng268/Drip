@@ -62,7 +62,7 @@ bool directoryResultReady = false;
 
 // Zoom control variables
 int zoomLevel = 0;
-int maxZoomLevel = 0x8000;
+int maxZoomLevel = 0x4000;
 Rect zoomInButtonRect;
 Rect zoomOutButtonRect;
 bool serialInitialized = false;
@@ -82,6 +82,12 @@ int maxContourArea = 300;
 Rect bgSubControlsRect;
 Rect bgSubSliderRect;
 Rect toggleBgSubControlsRect;
+
+// New control variables for ICR and IR Correction
+bool icrModeEnabled = false;
+bool irCorrectionEnabled = false;
+Rect icrButtonRect;
+Rect irCorrectionButtonRect;
 
 bool isDraggingMinHandle = false;
 bool isDraggingMaxHandle = false;
@@ -198,7 +204,7 @@ int main(int argc, char** argv) {
 
     // Initialize UI component positions
     initializeUI(windowWidth, windowHeight);
-
+    initIR(bgSubControlsRect.x, bgSubControlsRect.y, bgSubControlsRect.width, bgSubControlsRect.height);
     // Create custom arrow images
     createArrowImages();
 
@@ -409,6 +415,7 @@ int main(int argc, char** argv) {
         
         // Draw background subtraction controls
         drawBgSubControls(uiFrame, bgSubtractionActive);
+        drawIR(uiFrame, bgSubtractionActive);
 
         imshow("Water Dripping Investigation Recording Tools", uiFrame);
 

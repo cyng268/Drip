@@ -4,7 +4,10 @@
 
 void initBgSubControls(int controlsX, int controlsY, int controlsWidth, int controlsHeight) {
     bgSubControlsRect = Rect(controlsX, controlsY, controlsWidth, controlsHeight);
-    bgSubSliderRect = Rect(controlsX + 20, controlsY + 50, controlsWidth - 40, 60);
+    
+    // Position slider LOWER to leave room for IR controls at the top
+    // Increase y-position by 40-50 pixels to make room for IR buttons
+    bgSubSliderRect = Rect(controlsX + 20, controlsY + 90, controlsWidth - 40, 60);
     
     // Position toggle button based on initial control visibility
     updateBgSubControlsTogglePosition(showBgSubControls);

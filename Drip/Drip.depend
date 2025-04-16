@@ -5,7 +5,7 @@
 1743642780 /home/kng/Drip/src/camera.h
 	"common.h"
 
-1744275818 /home/kng/Drip/src/common.h
+1744696796 /home/kng/Drip/src/common.h
 	<stdio.h>
 	<opencv2/opencv.hpp>
 	<opencv2/highgui.hpp>
@@ -640,14 +640,14 @@
 1654443164 /usr/include/opencv4/opencv2/video/background_segm.hpp
 	"opencv2/core.hpp"
 
-1744275008 /home/kng/Drip/src/config.h
+1744784035 /home/kng/Drip/src/config.h
 	<string>
 	<map>
 	<fstream>
 	<iostream>
 	<sstream>
 
-1744684632 source:/home/kng/Drip/src/main.cpp
+1744784016 source:/home/kng/Drip/src/main.cpp
 	"common.h"
 	"camera.h"
 	"ui.h"
@@ -659,14 +659,14 @@
 	"ui_helpers.h"
 	"navigation_bar.h"
 
-1744684012 /home/kng/Drip/src/ui.h
+1744698358 /home/kng/Drip/src/ui.h
 	"common.h"
 	"background_subtraction.h"
 	"export_dialog.h"
 	"ui_helpers.h"
 	"navigation_bar.h"
 
-1743642780 /home/kng/Drip/src/serial.h
+1744698010 /home/kng/Drip/src/serial.h
 	"common.h"
 	"serialib.h"
 
@@ -694,14 +694,14 @@
 	<fstream>
 	<filesystem>
 
-1743642780 source:/home/kng/Drip/src/serial.cpp
+1744783491 source:/home/kng/Drip/src/serial.cpp
 	"serial.h"
 	"config.h"
 
 1743642780 source:/home/kng/Drip/src/serialib.cpp
 	"serialib.h"
 
-1744684250 source:/home/kng/Drip/src/ui.cpp
+1744699346 source:/home/kng/Drip/src/ui.cpp
 	"ui.h"
 	"serial.h"
 	"recording.h"
@@ -716,7 +716,7 @@
 	<X11/Xatom.h>
 	<cstring>
 
-1744682549 source:/home/kng/Drip/src/background_subtraction.cpp
+1744698841 source:/home/kng/Drip/src/background_subtraction.cpp
 	"background_subtraction.h"
 	<fstream>
 	<algorithm>
@@ -736,13 +736,13 @@
 1744684678 /home/kng/Drip/src/ui_helpers.h
 	"common.h"
 
-1744682726 /home/kng/Drip/src/navigation_bar.h
+1744702342 /home/kng/Drip/src/navigation_bar.h
 	"common.h"
 
 1744682608 source:/home/kng/Drip/src/navigation_bar.cpp
 	"navigation_bar.h"
 	"ui_helpers.h"
 
-1744684248 source:/home/kng/Drip/src/ui_helpers.cpp
+1744684679 source:/home/kng/Drip/src/ui_helpers.cpp
 	"ui_helpers.h"
 

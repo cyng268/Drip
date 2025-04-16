@@ -86,7 +86,7 @@ public:
         settings["RECORDING_FPS"] = "30.0";
         settings["SHOW_FPS"] = "false";
         settings["SHOW_NAV_BAR"] = "true";
-        settings["ZOOM_LEVEL"] = "64";
+        settings["ZOOM_LEVEL"] = "512";
         settings["FULL_SCREEN"] = "true";
         settings["UPPERBOUND"] = "200";
         settings["LOWERBOUND"] = "0";

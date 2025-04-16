@@ -1,0 +1,6 @@
+__pycache__
+Drip/bin
+Drip/drip_detect
+Drip/obj
+Drip/recordings
+Drip/config.ini

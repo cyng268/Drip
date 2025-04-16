@@ -40,11 +40,17 @@
 		<Linker>
 			<Add option="`pkg-config --libs --cflags opencv4` -lX11" />
 		</Linker>
+		<Unit filename="../src/background_subtraction.cpp" />
+		<Unit filename="../src/background_subtraction.h" />
 		<Unit filename="../src/camera.cpp" />
 		<Unit filename="../src/camera.h" />
 		<Unit filename="../src/common.h" />
 		<Unit filename="../src/config.h" />
+		<Unit filename="../src/export_dialog.cpp" />
+		<Unit filename="../src/export_dialog.h" />
 		<Unit filename="../src/main.cpp" />
+		<Unit filename="../src/navigation_bar.cpp" />
+		<Unit filename="../src/navigation_bar.h" />
 		<Unit filename="../src/recording.cpp" />
 		<Unit filename="../src/recording.h" />
 		<Unit filename="../src/serial.cpp" />
@@ -53,6 +59,8 @@
 		<Unit filename="../src/serialib.h" />
 		<Unit filename="../src/ui.cpp" />
 		<Unit filename="../src/ui.h" />
+		<Unit filename="../src/ui_helpers.cpp" />
+		<Unit filename="../src/ui_helpers.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

@@ -70,6 +70,10 @@ extern atomic<bool> recordingThreadActive;
 extern thread recordingThread;
 extern double recordingDurationSeconds;
 
+extern bool icrModeEnabled;
+extern bool irCorrectionEnabled;
+extern Rect icrButtonRect;
+extern Rect irCorrectionButtonRect;
 
 extern Config appConfig;
 // Export dialog variables

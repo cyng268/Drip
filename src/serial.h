@@ -18,5 +18,7 @@ std::string decToHex(int decimalNumber);
 // Zoom functions
 void zoomIn();
 void zoomOut();
+void sendICRCommand(bool enable);
+void sendIRCorrectionCommand(bool enable);
 
 #endif // SERIAL_H

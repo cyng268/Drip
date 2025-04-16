@@ -75,13 +75,76 @@ void sendZoomCommand(int level) {
     cameraSerial.writeBytes(buffer, len);
 }
 
+void sendICRCommand(bool enable) {
+    if (!serialInitialized) {
+        if (!initializeSerial()) {
+            setLogMessage("Serial error");
+            return;
+        }
+    }
+
+    // Command to enable ICR: 81 01 04 01 02 FF
+    // Command to disable ICR: 81 01 04 01 03 FF
+    std::string cmdStr = enable ? "8101040102FF" : "8101040103FF";
+
+    std::cout << "Sending ICR command: " << cmdStr << " (Enable: " << enable << ")" << std::endl;
+
+    // Convert hex string to bytes and send
+    int len = cmdStr.length() / 2;
+    unsigned char buffer[len];
+
+    for (int i = 0; i < len; i++) {
+        char byteStr[3] = {cmdStr[i*2], cmdStr[i*2+1], 0};
+        buffer[i] = (unsigned char)strtol(byteStr, NULL, 16);
+    }
+
+    cameraSerial.writeBytes(buffer, len);
+    setLogMessage(std::string("ICR Mode: ") + (enable ? "ON" : "OFF"));
+}
+
+void sendIRCorrectionCommand(bool enable) {
+    if (!serialInitialized) {
+        if (!initializeSerial()) {
+            setLogMessage("Serial error");
+            return;
+        }
+    }
+
+    // Command to enable IR Correction: 81 01 04 11 01 FF
+    // Command to disable IR Correction: 81 01 04 11 00 FF
+    std::string cmdStr = enable ? "8101041101FF" : "8101041100FF";
+
+    std::cout << "Sending IR Correction command: " << cmdStr << " (Enable: " << enable << ")" << std::endl;
+
+    // Convert hex string to bytes and send
+    int len = cmdStr.length() / 2;
+    unsigned char buffer[len];
+
+    for (int i = 0; i < len; i++) {
+        char byteStr[3] = {cmdStr[i*2], cmdStr[i*2+1], 0};
+        buffer[i] = (unsigned char)strtol(byteStr, NULL, 16);
+    }
+
+    cameraSerial.writeBytes(buffer, len);
+    setLogMessage(std::string("IR Correction: ") + (enable ? "ON" : "OFF"));
+}
+
 void zoomIn() {
     appConfig.loadConfig();
     int ZOOM_LEVEL = appConfig.getInt("ZOOM_LEVEL", 64);
     if (zoomLevel < maxZoomLevel) {
         zoomLevel += ZOOM_LEVEL;
         sendZoomCommand(zoomLevel);
-        setLogMessage("Zoom In: " + std::to_string(zoomLevel));
+        
+        // Calculate zoom multiplier (assuming 12x is max zoom at 16384)
+        float zoomMultiplier = (zoomLevel / 16384.0f) * 30.0f;
+        
+        // Format with 1 decimal place
+        std::stringstream stream;
+        stream << std::fixed << std::setprecision(1) << zoomMultiplier;
+        
+        cout << zoomMultiplier << endl;
+        setLogMessage("Zoom: " + stream.str() + "x");
     }
 }
 
@@ -91,6 +154,15 @@ void zoomOut() {
     if (zoomLevel > 0) {
         zoomLevel -= ZOOM_LEVEL;
         sendZoomCommand(zoomLevel);
-        setLogMessage("Zoom Out: " + std::to_string(zoomLevel));
+        
+        // Calculate zoom multiplier (assuming 12x is max zoom at 16384)
+        float zoomMultiplier = (zoomLevel / 16384.0f) * 30.0f;
+        
+        // Format with 1 decimal place
+        std::stringstream stream;
+        stream << std::fixed << std::setprecision(1) << zoomMultiplier;
+        
+        cout << zoomMultiplier << endl;
+        setLogMessage("Zoom: " + stream.str() + "x");
     }
 }
